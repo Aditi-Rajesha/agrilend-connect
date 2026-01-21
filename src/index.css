@@ -6,63 +6,63 @@
 
 @layer base {
   :root {
-    /* Agri Loan Marketplace - Earthy, Trustworthy Theme */
-    --background: 45 30% 97%;
-    --foreground: 150 25% 15%;
+    /* Agri Loan Marketplace - Light/Pale Green Theme */
+    --background: 140 30% 97%;
+    --foreground: 150 30% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 150 25% 15%;
+    --card-foreground: 150 30% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 150 25% 15%;
+    --popover-foreground: 150 30% 20%;
 
-    /* Primary - Deep Forest Green (Agriculture, Growth, Money) */
-    --primary: 152 45% 28%;
-    --primary-foreground: 45 30% 97%;
+    /* Primary - Pale/Light Green (Fresh, Natural, Trustworthy) */
+    --primary: 145 45% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary - Golden Wheat (Indian Identity, Harvest) */
-    --secondary: 42 85% 55%;
-    --secondary-foreground: 150 25% 15%;
+    /* Secondary - Soft Golden (Warm accent) */
+    --secondary: 45 70% 60%;
+    --secondary-foreground: 150 30% 20%;
 
-    /* Muted - Soft Earth */
-    --muted: 45 20% 92%;
+    /* Muted - Very Light Green Tint */
+    --muted: 140 25% 92%;
     --muted-foreground: 150 15% 45%;
 
-    /* Accent - Saffron Orange */
-    --accent: 28 90% 55%;
+    /* Accent - Soft Coral */
+    --accent: 25 80% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 45 20% 85%;
-    --input: 45 20% 85%;
-    --ring: 152 45% 28%;
+    --border: 140 20% 88%;
+    --input: 140 20% 88%;
+    --ring: 145 45% 55%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --success: 152 60% 40%;
+    --success: 145 55% 50%;
     --success-foreground: 0 0% 100%;
-    --warning: 42 85% 55%;
-    --warning-foreground: 150 25% 15%;
-    --info: 210 80% 50%;
+    --warning: 45 70% 60%;
+    --warning-foreground: 150 30% 20%;
+    --info: 210 80% 55%;
     --info-foreground: 0 0% 100%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(152 45% 28%) 0%, hsl(152 45% 38%) 100%);
-    --gradient-golden: linear-gradient(135deg, hsl(42 85% 55%) 0%, hsl(28 90% 55%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(152 45% 28%) 0%, hsl(152 45% 22%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(145 45% 55%) 0%, hsl(145 50% 45%) 100%);
+    --gradient-golden: linear-gradient(135deg, hsl(45 70% 60%) 0%, hsl(35 75% 55%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(145 45% 55%) 0%, hsl(145 45% 48%) 100%);
 
-    /* Sidebar */
-    --sidebar-background: 152 45% 28%;
-    --sidebar-foreground: 45 30% 97%;
-    --sidebar-primary: 42 85% 55%;
-    --sidebar-primary-foreground: 150 25% 15%;
-    --sidebar-accent: 152 45% 35%;
-    --sidebar-accent-foreground: 45 30% 97%;
-    --sidebar-border: 152 45% 35%;
-    --sidebar-ring: 42 85% 55%;
+    /* Sidebar - Light pale green */
+    --sidebar-background: 145 40% 45%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 45 70% 60%;
+    --sidebar-primary-foreground: 150 30% 20%;
+    --sidebar-accent: 145 40% 52%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 145 35% 50%;
+    --sidebar-ring: 45 70% 60%;
   }
 
   .dark {
