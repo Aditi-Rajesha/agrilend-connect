@@ -4,6 +4,7 @@ import { CreditCard, Shield, CheckCircle2, Loader2, ArrowRight, ArrowLeft, Trend
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useApp } from '@/contexts/AppContext';
 import { DashboardLayout } from '@/components/DashboardLayout';
+import { StatusBadge } from '@/components/StatusBadge';
 
 export const CreditCheck = () => {
   const { t } = useLanguage();
@@ -40,17 +41,24 @@ export const CreditCheck = () => {
 
   return (
     <DashboardLayout>
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <button 
-          onClick={() => navigate('/dashboard')}
-          className="p-2 rounded-lg hover:bg-muted transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">{t('credit.title')}</h1>
-          <p className="text-muted-foreground">{t('credit.subtitle')}</p>
+      {/* ✅ Header with right-side badge */}
+      <div className="flex items-start justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => navigate('/dashboard')}
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">{t('credit.title')}</h1>
+            <p className="text-muted-foreground">{t('credit.subtitle')}</p>
+          </div>
+        </div>
+
+        {/* ✅ Badge moved here */}
+        <div className="pt-2">
+          <StatusBadge status={verificationStatus.credit} />
         </div>
       </div>
 

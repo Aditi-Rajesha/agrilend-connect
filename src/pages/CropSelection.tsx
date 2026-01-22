@@ -4,6 +4,7 @@ import { Wheat, ArrowRight, ArrowLeft, Check } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useApp } from '@/contexts/AppContext';
 import { DashboardLayout } from '@/components/DashboardLayout';
+import { StatusBadge } from '@/components/StatusBadge';
 
 const NABARD_CROPS = [
   { id: 'wheat', name: 'Wheat', nameHi: 'गेहूं', season: 'rabi' as const, scaleOfFinance: 45000 },
@@ -49,17 +50,23 @@ export const CropSelection = () => {
 
   return (
     <DashboardLayout>
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <button 
-          onClick={() => navigate('/dashboard')}
-          className="p-2 rounded-lg hover:bg-muted transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">{t('crop.title')}</h1>
-          <p className="text-muted-foreground">{t('crop.subtitle')}</p>
+      {/* ✅ Header with right-side badge */}
+      <div className="flex items-start justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => navigate('/dashboard')}
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">{t('crop.title')}</h1>
+            <p className="text-muted-foreground">{t('crop.subtitle')}</p>
+          </div>
+        </div>
+
+        <div className="pt-2">
+          <StatusBadge status={verificationStatus.crop} />
         </div>
       </div>
 

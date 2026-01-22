@@ -7,9 +7,9 @@ import { LanguageToggle } from '@/components/LanguageToggle';
 
 export const Login = () => {
   const { t } = useLanguage();
-  const { setIsLoggedIn, setFarmerProfile } = useApp();
+  const { setIsLoggedIn, setFarmerProfile, farmerProfile } = useApp();
   const navigate = useNavigate();
-  
+
   const [phone, setPhone] = useState('');
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [step, setStep] = useState<'phone' | 'otp'>('phone');
@@ -18,7 +18,6 @@ export const Login = () => {
   const handleGetOtp = async () => {
     if (phone.length !== 10) return;
     setIsLoading(true);
-    // Simulate OTP sending
     await new Promise(resolve => setTimeout(resolve, 1500));
     setIsLoading(false);
     setStep('otp');
@@ -29,8 +28,7 @@ export const Login = () => {
     const newOtp = [...otp];
     newOtp[index] = value;
     setOtp(newOtp);
-    
-    // Auto-focus next input
+
     if (value && index < 5) {
       const nextInput = document.getElementById(`otp-${index + 1}`);
       nextInput?.focus();
@@ -40,16 +38,26 @@ export const Login = () => {
   const handleVerify = async () => {
     if (otp.some(digit => !digit)) return;
     setIsLoading(true);
-    // Simulate verification
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
+    // ✅ After OTP: only save phone + mark logged in
     setFarmerProfile({
-      name: 'राजेश कुमार',
-      phone: phone,
+      ...farmerProfile,
+      phone,
+      nameEn: '',
+      nameHi: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      address: '',
+      dob: '',
     });
+
     setIsLoggedIn(true);
     setIsLoading(false);
-    navigate('/dashboard');
+
+    // ✅ Go to profile setup instead of dashboard
+    navigate('/profile-setup');
   };
 
   const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -61,28 +69,20 @@ export const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/10 flex flex-col">
-      {/* Header */}
       <header className="p-4 flex justify-end">
         <LanguageToggle />
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-md animate-fade-in">
-          {/* Logo & Title */}
           <div className="text-center mb-8">
             <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-primary flex items-center justify-center shadow-xl">
               <Wheat className="w-10 h-10 text-primary-foreground" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground mb-2">
-              {t('login.title')}
-            </h1>
-            <p className="text-muted-foreground">
-              {t('login.subtitle')}
-            </p>
+            <h1 className="text-2xl font-bold text-foreground mb-2">{t('login.title')}</h1>
+            <p className="text-muted-foreground">{t('login.subtitle')}</p>
           </div>
 
-          {/* Login Card */}
           <div className="card-elevated p-6">
             {step === 'phone' ? (
               <div className="space-y-6 animate-slide-up">
@@ -124,9 +124,7 @@ export const Login = () => {
             ) : (
               <div className="space-y-6 animate-slide-up">
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground mb-1">
-                    {t('login.otpSent')}
-                  </p>
+                  <p className="text-sm text-muted-foreground mb-1">{t('login.otpSent')}</p>
                   <p className="font-semibold text-foreground">+91 {phone}</p>
                 </div>
 
@@ -176,7 +174,6 @@ export const Login = () => {
             )}
           </div>
 
-          {/* Trust Indicators */}
           <div className="mt-8 flex items-center justify-center gap-6 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <Shield className="w-4 h-4 text-primary" />

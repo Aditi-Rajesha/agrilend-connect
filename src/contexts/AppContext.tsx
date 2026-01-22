@@ -1,11 +1,18 @@
 import React, { createContext, useContext, useState } from 'react';
 
 interface FarmerProfile {
-  name: string;
+  nameEn: string;
+  nameHi: string;
   phone: string;
-  aadharNumber?: string;
-  dob?: string;
+
+  // ✅ New fields
+  firstName?: string;
+  lastName?: string;
+  email?: string;
   address?: string;
+  dob?: string;
+
+  aadharNumber?: string;
   creditScore?: number;
   landDetails?: {
     khasraNumber: string;
@@ -51,12 +58,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [applicationSubmitted, setApplicationSubmitted] = useState(false);
   const [applicationReference, setApplicationReference] = useState<string | null>(null);
-  
+
   const [farmerProfile, setFarmerProfile] = useState<FarmerProfile>({
-    name: '',
+    nameEn: '',
+    nameHi: '',
     phone: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    dob: '',
   });
-  
+
   const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>({
     aadhar: 'pending',
     credit: 'pending',
@@ -66,18 +79,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   });
 
   return (
-    <AppContext.Provider value={{
-      isLoggedIn,
-      setIsLoggedIn,
-      farmerProfile,
-      setFarmerProfile,
-      verificationStatus,
-      setVerificationStatus,
-      applicationSubmitted,
-      setApplicationSubmitted,
-      applicationReference,
-      setApplicationReference,
-    }}>
+    <AppContext.Provider
+      value={{
+        isLoggedIn,
+        setIsLoggedIn,
+        farmerProfile,
+        setFarmerProfile,
+        verificationStatus,
+        setVerificationStatus,
+        applicationSubmitted,
+        setApplicationSubmitted,
+        applicationReference,
+        setApplicationReference,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
@@ -85,8 +100,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
 export const useApp = () => {
   const context = useContext(AppContext);
-  if (!context) {
-    throw new Error('useApp must be used within an AppProvider');
-  }
+  if (!context) throw new Error('useApp must be used within an AppProvider');
   return context;
 };

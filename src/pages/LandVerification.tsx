@@ -4,6 +4,7 @@ import { MapPin, Shield, CheckCircle2, Loader2, ArrowRight, ArrowLeft, Map } fro
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useApp } from '@/contexts/AppContext';
 import { DashboardLayout } from '@/components/DashboardLayout';
+import { StatusBadge } from '@/components/StatusBadge';
 
 export const LandVerification = () => {
   const { t } = useLanguage();
@@ -38,17 +39,23 @@ export const LandVerification = () => {
 
   return (
     <DashboardLayout>
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <button 
-          onClick={() => navigate('/dashboard')}
-          className="p-2 rounded-lg hover:bg-muted transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </button>
-        <div>
-          <h1 className="text-2xl font-bold text-foreground">{t('land.title')}</h1>
-          <p className="text-muted-foreground">{t('land.subtitle')}</p>
+      {/* ✅ Header with right-side badge */}
+      <div className="flex items-start justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <button 
+            onClick={() => navigate('/dashboard')}
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">{t('land.title')}</h1>
+            <p className="text-muted-foreground">{t('land.subtitle')}</p>
+          </div>
+        </div>
+
+        <div className="pt-2">
+          <StatusBadge status={verificationStatus.land} />
         </div>
       </div>
 

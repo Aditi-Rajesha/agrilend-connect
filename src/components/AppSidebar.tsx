@@ -12,7 +12,6 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useApp } from '@/contexts/AppContext';
-import { StatusBadge } from './StatusBadge';
 import {
   Sidebar,
   SidebarContent,
@@ -27,7 +26,7 @@ import {
 
 export const AppSidebar = () => {
   const { t } = useLanguage();
-  const { verificationStatus, setIsLoggedIn } = useApp();
+  const { setIsLoggedIn } = useApp();
   const navigate = useNavigate();
   const location = useLocation();
   const { state } = useSidebar();
@@ -38,43 +37,36 @@ export const AppSidebar = () => {
       title: t('sidebar.home'), 
       url: '/dashboard', 
       icon: Home,
-      status: null,
     },
     { 
       title: t('sidebar.aadhar'), 
       url: '/aadhar', 
       icon: Fingerprint,
-      status: verificationStatus.aadhar,
     },
     { 
       title: t('sidebar.credit'), 
       url: '/credit', 
       icon: CreditCard,
-      status: verificationStatus.credit,
     },
     { 
       title: t('sidebar.land'), 
       url: '/land', 
       icon: MapPin,
-      status: verificationStatus.land,
     },
     { 
       title: t('sidebar.crop'), 
       url: '/crop', 
       icon: Wheat,
-      status: verificationStatus.crop,
     },
     { 
       title: t('sidebar.calculate'), 
       url: '/calculate', 
       icon: Calculator,
-      status: verificationStatus.loan,
     },
     { 
       title: t('sidebar.apply'), 
       url: '/apply', 
       icon: FileText,
-      status: null,
     },
   ];
 
@@ -119,7 +111,7 @@ export const AppSidebar = () => {
                     {!collapsed && (
                       <div className="flex-1 flex items-center justify-between min-w-0">
                         <span className="text-sm font-medium truncate">{item.title}</span>
-                        {item.status && <StatusBadge status={item.status} />}
+                        {/* ✅ Removed sidebar StatusBadge */}
                       </div>
                     )}
                   </SidebarMenuButton>

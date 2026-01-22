@@ -5,8 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AppProvider } from "@/contexts/AppContext";
+
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import ProfileSetup from "./pages/ProfileSetup";
 import AadharVerification from "./pages/AadharVerification";
 import CreditCheck from "./pages/CreditCheck";
 import LandVerification from "./pages/LandVerification";
@@ -27,6 +29,10 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+
+              {/* ✅ NEW: Profile setup after OTP */}
+              <Route path="/profile-setup" element={<ProfileSetup />} />
+
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/aadhar" element={<AadharVerification />} />
               <Route path="/credit" element={<CreditCheck />} />
@@ -34,6 +40,7 @@ const App = () => (
               <Route path="/crop" element={<CropSelection />} />
               <Route path="/calculate" element={<LoanCalculation />} />
               <Route path="/apply" element={<LoanApplication />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
